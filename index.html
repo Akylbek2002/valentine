@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Для тебя ❤️</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; min-height:100vh;
+           display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg,#ffdde1,#ee9ca7); }
+    .card { background: rgba(255,255,255,.85); padding:24px; border-radius:18px; max-width:520px; box-shadow:0 10px 30px rgba(0,0,0,.15); }
+    h1 { margin:0 0 10px; }
+    p { font-size:18px; line-height:1.5; }
+    .btn { display:inline-block; margin-top:12px; padding:12px 16px; border-radius:12px; text-decoration:none;
+           background:#111; color:#fff; }
+    .hearts { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .heart { position:absolute; font-size:22px; animation: float 6s linear infinite; opacity:.8; }
+    @keyframes float { from { transform: translateY(110vh); } to { transform: translateY(-10vh); } }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Айпери, с Днём Валентина ❤️</h1>
+    <p>
+      Я знаю, что ты сейчас далеко, но ты всё равно рядом со мной — в мыслях, в сердце и в каждом моём дне.
+      Спасибо тебе за тепло, поддержку и за то, что ты есть.
+    </p>
+    <p><b>Я люблю тебя.</b> 🫶</p>
+    <!-- можно вставить ссылку на ваше видео/фотоальбом -->
+    <a class="btn" href="https://t.me/" target="_blank" rel="noreferrer">Открыть мой сюрприз</a>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+  <script>
+    const wrap = document.getElementById('hearts');
+    const emojis = ["❤️","💖","💕","💘","💗"];
+    for (let i=0;i<24;i++){
+      const s = document.createElement('div');
+      s.className = 'heart';
+      s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      s.style.left = Math.random()*100 + 'vw';
+      s.style.animationDelay = (Math.random()*6) + 's';
+      s.style.fontSize = (16 + Math.random()*18) + 'px';
+      wrap.appendChild(s);
+    }
+  </script>
+</body>
+</html>
