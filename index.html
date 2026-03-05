@@ -3,24 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Айушка — 11 Марта ❤️</title>
+  <title>Айушка — 12 Марта ❤️</title>
 
   <style>
     :root{
       --bg1:#0b1020;
       --bg2:#2b0a1b;
-      --card: rgba(255,255,255,.55);
-      --text:#141414;
-      --muted: rgba(0,0,0,.62);
-      --shadow: 0 18px 55px rgba(0,0,0,.22);
+
+      /* стекло */
+      --card: rgba(0,0,0,.18);
+      --panel: rgba(0,0,0,.22);
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.74);
+      --soft: rgba(255,255,255,.60);
+
+      --shadow: 0 18px 55px rgba(0,0,0,.30);
       --radius: 22px;
 
       --red:#e11d48;
       --red2:#fb7185;
       --gold:#f59e0b;
-
-      --spaceText: rgba(255,255,255,.75);
-      --spaceSoft: rgba(255,255,255,.22);
     }
 
     *{ box-sizing:border-box; }
@@ -30,6 +33,7 @@
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color: var(--text);
+
       overflow-x: hidden;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
@@ -41,11 +45,12 @@
         linear-gradient(135deg, var(--bg1), var(--bg2));
     }
 
+    /* звёзды */
     .stars, .stars2{
       position:fixed; inset:0;
       pointer-events:none;
       background-repeat: repeat;
-      opacity:.7;
+      opacity:.75;
       z-index:0;
     }
     .stars{
@@ -57,10 +62,9 @@
         radial-gradient(1.5px 1.5px at 260px 20px, rgba(255,255,255,.75) 50%, transparent 52%);
       background-size: 280px 220px;
       animation: drift 38s linear infinite;
-      filter: blur(.0px);
     }
     .stars2{
-      opacity:.45;
+      opacity:.48;
       background-image:
         radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,.55) 50%, transparent 52%),
         radial-gradient(1px 1px at 110px 30px, rgba(255,255,255,.45) 50%, transparent 52%),
@@ -74,8 +78,9 @@
       to{ transform: translate3d(-120px, -80px, 0); }
     }
 
+    /* контейнер */
     .shell{
-      min-height:100vh;
+      min-height: 100dvh; /* лучше для мобилок */
       display:flex;
       align-items:center;
       justify-content:center;
@@ -89,19 +94,24 @@
       background: var(--card);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.55);
-      backdrop-filter: blur(18px) saturate(140%);
+
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+
       padding: 22px 20px 18px;
       position:relative;
       overflow:hidden;
     }
+
+    /* мягкий блик */
     .card::before{
       content:"";
       position:absolute;
-      inset:-130px -160px auto auto;
-      width: 310px; height: 310px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 66%);
-      transform: rotate(12deg);
+      inset:-160px -180px auto auto;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), rgba(255,255,255,0) 68%);
+      transform: rotate(10deg);
       opacity:.85;
       pointer-events:none;
     }
@@ -111,15 +121,17 @@
       width:54px; height:54px; border-radius:18px;
       display:flex; align-items:center; justify-content:center;
       font-size:26px;
-      background: linear-gradient(135deg, rgba(225,29,72,.14), rgba(251,113,133,.18));
-      border: 1px solid rgba(225,29,72,.22);
+      background: linear-gradient(135deg, rgba(225,29,72,.22), rgba(251,113,133,.20));
+      border: 1px solid rgba(255,255,255,.14);
       flex:0 0 auto;
     }
+
     h1{
       margin:0;
       font-size: 22px;
       line-height:1.15;
       letter-spacing: -0.2px;
+      color: var(--text);
     }
     .sub{
       margin:6px 0 0;
@@ -131,20 +143,31 @@
     .divider{
       height:1px;
       margin:14px 0 12px;
-      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,.13), rgba(0,0,0,0));
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.16), rgba(255,255,255,0));
     }
+
     p{
       margin: 10px 0;
       font-size: 17px;
       line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* панели */
+    .stats,
+    .planetCard,
+    .wishCard,
+    .secret{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
     }
 
     .stats{
       margin-top: 12px;
       padding: 14px;
       border-radius: 16px;
-      background: rgba(255,255,255,.25);
-      border: 1px solid rgba(0,0,0,.06);
     }
     .stat{
       display:flex;
@@ -152,8 +175,14 @@
       gap:12px;
       font-size: 15.5px;
       padding: 6px 0;
+      color: var(--soft);
+    }
+    .stat b{
+      color: var(--text);
+      font-weight: 850;
     }
 
+    /* Планета + пожелания */
     .planetRow{
       margin-top: 12px;
       display:grid;
@@ -164,18 +193,17 @@
 
     .planetCard, .wishCard{
       border-radius: 16px;
-      border:1px solid rgba(0,0,0,.06);
-      background: linear-gradient(135deg, rgba(225,29,72,.10), rgba(255,255,255,.35));
       padding: 12px 14px;
       position:relative;
       overflow:hidden;
     }
 
-    .planetTitle{
+    .planetTitle,
+    .wishTitle{
       font-weight: 850;
       font-size: 14.5px;
       margin-bottom: 8px;
-      color: rgba(0,0,0,.78);
+      color: var(--text);
     }
 
     .planetSvg{
@@ -187,18 +215,18 @@
     .planetCaption{
       margin-top: 6px;
       font-size: 13.5px;
-      color: rgba(0,0,0,.62);
+      color: var(--muted);
       text-align:center;
     }
-
     .planetQuote{
       margin-top: 8px;
       text-align:center;
       font-size: 12.8px;
-      color: rgba(0,0,0,.58);
+      color: rgba(255,255,255,.66);
       font-style: italic;
     }
 
+    /* лента */
     .string{
       stroke-dasharray: 520;
       stroke-dashoffset: 520;
@@ -209,11 +237,9 @@
       stroke-dashoffset: 520;
       transition: stroke-dashoffset 1.2s cubic-bezier(.2,.85,.2,1);
     }
-    .spark{
-      opacity: 0;
-      transition: opacity .25s ease;
-    }
+    .spark{ opacity: 0; transition: opacity .25s ease; }
 
+    /* пульс */
     .pulseRing{ transform-origin: center; opacity: 0; }
     .pulseOn .pulseRing{
       opacity: 1;
@@ -226,18 +252,10 @@
     }
 
     .secretOn .string,
-    .secretOn .stringSheen{
-      stroke-dashoffset: 0;
-    }
+    .secretOn .stringSheen{ stroke-dashoffset: 0; }
     .secretOn .spark{ opacity: 1; }
 
-    .wishTitle{
-      font-weight: 850;
-      font-size: 14.5px;
-      margin-bottom: 8px;
-      color: rgba(0,0,0,.78);
-    }
-
+    /* пожелания */
     .wishes{
       margin:0;
       padding-left: 18px;
@@ -248,19 +266,19 @@
     .wishes li{
       font-size: 14.8px;
       line-height: 1.45;
-      color: rgba(0,0,0,.74);
+      color: rgba(255,255,255,.82);
       cursor:pointer;
       user-select:none;
       transition: transform .08s ease;
     }
     .wishes li:active{ transform: scale(0.995); }
-
     .wishHint{
       margin-top: 10px;
       font-size: 12.8px;
-      color: rgba(0,0,0,.55);
+      color: rgba(255,255,255,.62);
     }
 
+    /* кнопки */
     .row{
       display:flex;
       gap:10px;
@@ -275,22 +293,25 @@
       padding: 12px 14px;
       border-radius: 14px;
       text-decoration:none;
-      font-weight: 750;
-      border: 1px solid rgba(0,0,0,.08);
-      background:#111;
-      color:#fff;
+      font-weight: 850;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      color: var(--text);
       flex:1 1 240px;
       transition: transform .12s ease, filter .12s ease;
       user-select:none;
       -webkit-tap-highlight-color: transparent;
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
     }
     .btn.secondary{
-      background: rgba(255,255,255,.82);
-      color:#111;
+      background: rgba(255,255,255,.10);
+      color: var(--text);
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
     .btn:active{ transform: translateY(0px); }
 
+    /* секрет */
     .secretWrap{ margin-top: 10px; text-align:center; }
     #revealBtn{
       border:none;
@@ -299,6 +320,7 @@
       cursor:pointer;
       transition: transform .18s ease;
       -webkit-tap-highlight-color: transparent;
+      color: var(--text);
     }
     #revealBtn:active{ transform: scale(0.96); }
     .hint{
@@ -306,6 +328,7 @@
       color: var(--muted);
       margin-top: 6px;
     }
+
     .secret{
       max-height: 0;
       overflow:hidden;
@@ -313,8 +336,6 @@
       margin-top: 10px;
       padding: 0 14px;
       border-radius: 16px;
-      background: rgba(17,17,17,.05);
-      border: 1px solid rgba(0,0,0,.06);
       transition: max-height .48s ease, opacity .35s ease, padding .35s ease;
       text-align:left;
     }
@@ -323,8 +344,17 @@
       opacity: 1;
       padding: 14px;
     }
-    .secret .title{ font-weight: 850; margin-bottom: 8px; }
-    .secret p{ margin:0; font-size: 16px; line-height:1.55; }
+    .secret .title{
+      font-weight: 900;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .secret p{
+      margin:0;
+      font-size: 16px;
+      line-height:1.55;
+      color: rgba(255,255,255,.88);
+    }
 
     .sign{
       margin-top: 12px;
@@ -332,14 +362,15 @@
       font-size: 14px;
       color: var(--muted);
     }
-    .sign b{ color: rgba(0,0,0,.78); }
+    .sign b{ color: var(--text); }
 
+    /* плавающие эмодзи */
     .floatLayer{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
     .floater{
       position:absolute;
       animation: float 7.4s linear infinite;
-      opacity:.92;
-      filter: drop-shadow(0 8px 14px rgba(0,0,0,.14));
+      opacity:.86;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,.18));
       will-change: transform;
     }
     @keyframes float {
@@ -347,7 +378,7 @@
       to   { transform: translateY(-12vh); }
     }
 
-    /* ======= MOBILE POLISH (заменил и улучшил) ======= */
+    /* ======= MOBILE ======= */
     @media (max-width: 520px){
       .shell{ padding: 10px 10px; }
 
@@ -356,7 +387,6 @@
         padding: 14px 12px 12px;
         border-radius: 18px;
       }
-
       .top{ gap:10px; }
       .badge{ width:44px; height:44px; border-radius:14px; font-size:22px; }
 
@@ -366,7 +396,6 @@
       p{ font-size: 15.5px; line-height:1.55; }
       .divider{ margin: 10px 0; }
 
-      /* Статы: сеткой, чтобы не ломалось */
       .stats{ padding: 12px; border-radius: 14px; }
       .stat{
         display:grid;
@@ -376,15 +405,10 @@
         gap: 10px;
         padding: 7px 0;
       }
-      .stat b{
-        text-align:right;
-        white-space: nowrap;
-      }
+      .stat b{ text-align:right; white-space: nowrap; }
 
-      /* Планета + пожелания — колонкой */
       .planetRow{ grid-template-columns: 1fr; gap: 10px; }
 
-      /* Увеличиваем ощущение планеты */
       .planetCard{ padding: 12px; }
       .planetSvg{
         width:100%;
@@ -396,11 +420,8 @@
       .planetCaption{ font-size: 13px; }
       .planetQuote{ font-size: 12.4px; }
 
-      /* Кнопки — вертикально */
       .btn{ flex: 1 1 100%; padding: 12px 12px; }
-
-      /* Эмодзи менее навязчивые */
-      .floater{ opacity:.75; }
+      .floater{ opacity:.72; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -420,9 +441,9 @@
       <div class="top">
         <div class="badge">🌷</div>
         <div>
-          <h1>Айушка, с 11 Марта ❤️</h1>
+          <h1>Айушка, с 12 Марта ❤️</h1>
           <div class="sub">
-            Моя Айушка, Бишкек и Красноярск далеко друг от друга —  
+            Моя Айушка, Бишкек и Красноярск далеко друг от друга —
             но наша красная лента судьбы держит нас вместе.
           </div>
         </div>
@@ -446,7 +467,6 @@
         <div class="planetCard">
           <div class="planetTitle">Наша планета, наша нить</div>
 
-          <!-- ВАЖНО: viewBox подрезал, чтобы планета стала больше -->
           <svg class="planetSvg" viewBox="40 35 360 230" role="img" aria-label="Планета и лента между городами">
             <defs>
               <radialGradient id="halo" cx="50%" cy="45%" r="70%">
@@ -494,7 +514,7 @@
 
             <circle cx="230" cy="150" r="108" fill="url(#ocean)" opacity=".96"/>
             <circle cx="230" cy="150" r="108" fill="url(#atm)" opacity=".95"/>
-            <circle cx="230" cy="150" r="108" fill="none" stroke="rgba(0,0,0,.10)" stroke-width="1"/>
+            <circle cx="230" cy="150" r="108" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
 
             <path d="M185,118 C205,92 242,95 248,118 C255,143 219,154 200,138 C184,125 178,134 185,118Z"
                   fill="rgba(34,197,94,.18)"/>
@@ -504,21 +524,21 @@
                   fill="rgba(34,197,94,.14)"/>
 
             <g class="pulseGroup" id="pulseGroup">
-              <circle class="pulseRing" cx="140" cy="165" r="16" fill="rgba(225,29,72,.18)"/>
-              <circle class="pulseRing" cx="320" cy="165" r="16" fill="rgba(251,113,133,.18)"/>
+              <circle class="pulseRing" cx="140" cy="165" r="16" fill="rgba(225,29,72,.20)"/>
+              <circle class="pulseRing" cx="320" cy="165" r="16" fill="rgba(251,113,133,.20)"/>
             </g>
 
             <g>
               <circle id="dotBishkek" cx="140" cy="165" r="6.2" fill="#e11d48"/>
-              <circle cx="140" cy="165" r="14" fill="rgba(225,29,72,.14)"/>
-              <text x="140" y="196" text-anchor="middle" font-size="12" fill="rgba(0,0,0,.70)">Бишкек</text>
+              <circle cx="140" cy="165" r="14" fill="rgba(225,29,72,.18)"/>
+              <text x="140" y="196" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.82)">Бишкек</text>
 
               <circle id="dotKras" cx="320" cy="165" r="6.2" fill="#fb7185"/>
-              <circle cx="320" cy="165" r="14" fill="rgba(251,113,133,.14)"/>
-              <text x="320" y="196" text-anchor="middle" font-size="12" fill="rgba(0,0,0,.70)">Красноярск</text>
+              <circle cx="320" cy="165" r="14" fill="rgba(251,113,133,.18)"/>
+              <text x="320" y="196" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.82)">Красноярск</text>
             </g>
 
-            <use href="#stringPath" stroke="rgba(0,0,0,.10)" stroke-width="12" fill="none" stroke-linecap="round" opacity=".18"
+            <use href="#stringPath" stroke="rgba(255,255,255,.12)" stroke-width="12" fill="none" stroke-linecap="round" opacity=".25"
                  class="string"/>
             <use href="#stringPath" stroke="url(#stringGrad)" stroke-width="9" fill="none" stroke-linecap="round"
                  filter="url(#stringGlow)" class="string"/>
@@ -571,7 +591,7 @@
             Я хочу будущее с тобой: где мы смеёмся, поддерживаем друг друга и идём одной дорогой.
             Пусть сегодня мы в разных городах — Бишкек и Красноярск —
             но наша красная лента судьбы уже всё решила.
-            С 8 марта, любовь моя. Я рядом. Всегда.
+            С 11 марта, любовь моя. Я рядом. Всегда.
           </p>
         </div>
       </div>
@@ -634,21 +654,19 @@
       (toMeet >= 0) ? `${toMeet} дней` : `совсем скоро ✨`;
 
     const wishesList = document.getElementById("wishesList");
-    if (wishesList) {
-      wishesList.addEventListener("click", (e) => {
-        const li = e.target.closest("li");
-        if (!li) return;
+    wishesList.addEventListener("click", (e) => {
+      const li = e.target.closest("li");
+      if (!li) return;
 
-        const current = li.textContent.trim();
-        let next = current;
-        let safety = 0;
-        while (next === current && safety < 20) {
-          next = WISH_POOL[Math.floor(Math.random() * WISH_POOL.length)];
-          safety++;
-        }
-        li.textContent = next;
-      });
-    }
+      const current = li.textContent.trim();
+      let next = current;
+      let safety = 0;
+      while (next === current && safety < 20) {
+        next = WISH_POOL[Math.floor(Math.random() * WISH_POOL.length)];
+        safety++;
+      }
+      li.textContent = next;
+    });
 
     const revealBtn = document.getElementById("revealBtn");
     const secretBox = document.getElementById("secretBox");
@@ -686,8 +704,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
